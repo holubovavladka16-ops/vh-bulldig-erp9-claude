@@ -117,7 +117,11 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
   // Sledování aktivity uživatele pro automatické odhlášení po 15 minutách.
   useEffect(() => {
-    if (!profile) {
+    const devAutoLogin =
+      process.env.NEXT_PUBLIC_DEV_AUTO_LOGIN === "true" ||
+      process.env.NODE_ENV === "development";
+
+    if (!profile || devAutoLogin) {
       clearInactivityTimers();
       return;
     }

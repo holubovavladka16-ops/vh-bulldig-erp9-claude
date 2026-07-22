@@ -6,6 +6,9 @@ import { createClient } from "@/lib/supabase/client";
 import CompanyLogo from "@/components/CompanyLogo";
 
 const DISPLAY_MS = 10_000;
+const DEV_AUTO_LOGIN =
+  process.env.NEXT_PUBLIC_DEV_AUTO_LOGIN === "true" ||
+  process.env.NODE_ENV === "development";
 
 function WelcomeContent() {
   const router = useRouter();
@@ -27,6 +30,12 @@ function WelcomeContent() {
     const raf = requestAnimationFrame(() => setVisible(true));
 
     const next = searchParams.get("next") || "/dashboard";
+
+    if (DEV_AUTO_LOGIN) {
+      router.replace(next);
+      return;
+    }
+
     const timer = setTimeout(() => {
       router.replace(next);
     }, DISPLAY_MS);
