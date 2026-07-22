@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { isDevAutoLoginEnabled } from "@/lib/devAutoLogin";
 
 export default async function RootPage() {
   const supabase = createClient();
@@ -7,5 +8,13 @@ export default async function RootPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  redirect(user ? "/dashboard" : "/prihlaseni");
+  if (user) {
+    redirect("/dashboard");
+  }
+
+  if (isDevAutoLoginEnabled()) {
+    redirect("/api/dev/auto-login?next=/dashboard");
+  }
+
+  redirect("/prihlaseni");
 }
