@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Segoe UI", system-ui, sans-serif;
+  --font-body: "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+
+  /* Design 2 – Professional (výchozí, beze změny oproti původním hodnotám) */
+  --c-base-950: 7 11 20;
+  --c-base-900: 12 18 32;
+  --c-base-800: 19 28 46;
+  --c-gold: 201 162 75;
+  --c-gold-light: 228 197 120;
+  --c-turquoise: 45 212 200;
+  --c-turquoise-light: 110 233 223;
+}
+
+/*
+ * Šest schválených designů (Modul 16). Všechny zůstávají tmavé -
+ * komponenty v celé aplikaci používají utility jako text-white/60,
+ * border-white/10 apod. bez vlastního tématu, takže světlý motiv by
+ * bez rozsáhlé úpravy každé komponenty nebyl čitelný. Jednotlivé
+ * designy se proto liší odstínem pozadí a barvou zvýraznění, ne
+ * přechodem na světlé pozadí.
+ */
+[data-theme="classic"] {
+  --c-base-950: 20 16 12;
+  --c-base-900: 28 23 18;
+  --c-base-800: 42 33 25;
+  --c-gold: 201 162 75;
+  --c-gold-light: 228 197 120;
+  --c-turquoise: 139 111 71;
+  --c-turquoise-light: 176 141 104;
+}
+
+[data-theme="professional"] {
+  --c-base-950: 7 11 20;
+  --c-base-900: 12 18 32;
+  --c-base-800: 19 28 46;
+  --c-gold: 201 162 75;
+  --c-gold-light: 228 197 120;
+  --c-turquoise: 45 212 200;
+  --c-turquoise-light: 110 233 223;
+}
+
+[data-theme="industrial"] {
+  --c-base-950: 18 18 18;
+  --c-base-900: 26 26 26;
+  --c-base-800: 36 36 36;
+  --c-gold: 232 98 44;
+  --c-gold-light: 240 134 89;
+  --c-turquoise: 110 140 160;
+  --c-turquoise-light: 147 174 192;
+}
+
+[data-theme="modern"] {
+  --c-base-950: 16 19 28;
+  --c-base-900: 22 27 39;
+  --c-base-800: 31 38 53;
+  --c-gold: 99 102 241;
+  --c-gold-light: 139 142 245;
+  --c-turquoise: 34 211 238;
+  --c-turquoise-light: 103 227 245;
+}
+
+[data-theme="executive"] {
+  --c-base-950: 13 11 20;
+  --c-base-900: 20 17 30;
+  --c-base-800: 30 25 48;
+  --c-gold: 184 149 47;
+  --c-gold-light: 212 184 96;
+  --c-turquoise: 199 199 209;
+  --c-turquoise-light: 222 222 229;
+}
+
+[data-theme="field"] {
+  --c-base-950: 18 22 13;
+  --c-base-900: 25 31 18;
+  --c-base-800: 35 43 26;
+  --c-gold: 163 201 58;
+  --c-gold-light: 187 221 102;
+  --c-turquoise: 217 119 6;
+  --c-turquoise-light: 240 151 61;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: rgb(var(--c-base-950));
+  transition: background-color 0.25s ease;
+}
+
+/* Viditelný focus stav pro klávesnicové ovládání (přístupnost) */
+:focus-visible {
+  outline: 2px solid #2dd4c8;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
